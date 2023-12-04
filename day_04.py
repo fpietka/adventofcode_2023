@@ -23,9 +23,8 @@ for index, line in enumerate(lines.readlines()):
     if good > 0:
         total += geometric_progression(good)
 
-    for _ in range(1, scratchcards[index]['amount'] + 1):
-        for next_index in range(1, good + 1):
-            scratchcards[index + next_index]['amount'] += 1
+    for next_index in range(1, good + 1):
+        scratchcards[index + next_index]['amount'] += scratchcards[index]['amount']
     sc_total += scratchcards[index]['amount']
 
 
