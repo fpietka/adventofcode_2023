@@ -13,12 +13,11 @@ for line in lines.readlines():
         processed = []
     else:
         parts = [int(part) for part in line.split(' ')]
-
-        dest_range = list(range(parts[0], parts[0] + parts[2]))
-        source_range = list(range(parts[1], parts[1] + parts[2]))
+        dest_start = parts[0]
+        source_start, source_end = parts[1], parts[1] + parts[2]
         for index, seed in enumerate(seeds):
-            if seed in source_range and index not in processed:
-                seeds[index] = dest_range[source_range.index(seed)]
+            if seed >= source_start and seed <= source_end and index not in processed:
+                seeds[index] = dest_start + seed - source_start
                 processed.append(index)
 
 print(min(seeds))
